@@ -1,13 +1,15 @@
 package dictionary;
-import org.junit.Test;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 
 public class DictionaryManagement {
     public Dictionary arrayWord = new Dictionary();
     public int numberWord ;
-@Test
+
     public void insertFromCommandline(){
 
         Scanner wordtarget = new Scanner(System.in);
@@ -16,7 +18,7 @@ public class DictionaryManagement {
 
         String wordTarget ;
         String wordExplain ;
-                ;
+        ;
         System.out.println("So tu moi: ");
         numberWord = numberword.nextInt();
         for(int i=0; i<numberWord; i++) {
@@ -34,21 +36,52 @@ public class DictionaryManagement {
         }
 
     }
-    @Test
+
     public void dictionaryLookup(){
         Scanner searchWord = new Scanner(System.in);
         String searchword;
         System.out.println("Nhap tu: ");
         searchword = searchWord.nextLine();
     }
-    public void removeWord(){
-        int n = keys.lastIndexOf(word);
-        if (n>=0 && n<=keys.size()-1){
-            keys.remove(n);
-        }
+    public void addWord(){
+        String FILENAME = "/Users/truongnguyen/Documents/dictionarydemo/src/dictionaries.txt";
 
-        this.update();
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(FILENAME, true);
+            bw = new BufferedWriter(fw);
+            String addword;
+            Scanner Content = new Scanner(System.in);
+            addword = Content.nextLine();
+
+            bw.write(addword);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+
+                if (bw != null)
+                    bw.close();
+
+                if (fw != null)
+                    fw.close();
+
+            } catch (IOException ex) {
+
+                ex.printStackTrace();
+
+            }
+
+        }
     }
+
+    /*public void removeWord(){
+        String text = "/Users/truongnguyen/Documents/dictionarydemo/src/dictionaries.txt";
+        text = text.replace("[Forwarding newSession on session null to remote]", " ");
+
+    }*/
 
 
 }
